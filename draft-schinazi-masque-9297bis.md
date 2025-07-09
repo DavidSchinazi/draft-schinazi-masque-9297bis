@@ -5,13 +5,13 @@ docname: draft-schinazi-masque-9297bis-latest
 v: 3
 submissiontype: IETF
 category: std
-area: Transport
+area: "Web and Internet Transport"
 wg: MASQUE
 number:
 date:
 consensus: true
 venue:
-  group: "MASQUE"
+  group: "Multiplexed Application Substrate over QUIC Encryption"
   type: "Working Group"
   mail: "masque@ietf.org"
   arch: "https://mailarchive.ietf.org/arch/browse/masque/"
