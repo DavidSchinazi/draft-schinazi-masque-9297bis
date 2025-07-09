@@ -71,7 +71,6 @@ convention for conveying data in HTTP connections.
 HTTP Datagrams and the Capsule Protocol are intended for use by HTTP extensions,
 not applications.
 
-
 --- middle
 
 # Introduction {#intro}
