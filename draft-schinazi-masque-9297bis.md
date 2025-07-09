@@ -57,8 +57,8 @@ normative:
 
 --- abstract
 
-This document intends to potentially be a revision of {{RFC9297}}. Right now it
-contains the text from RFC 9297, unmodified.
+This document intends to potentially be a revision of {{?RFC9297}}. Right now
+it contains the text from RFC 9297, unmodified.
 
 This document describes HTTP Datagrams, a convention for conveying multiplexed,
 potentially unreliable datagrams inside an HTTP connection.
