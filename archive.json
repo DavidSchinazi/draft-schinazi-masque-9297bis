@@ -1,0 +1,151 @@
+{
+  "magic": "E!vIA5L86J2I",
+  "timestamp": "2025-07-13T01:54:20.918041+00:00",
+  "repo": "DavidSchinazi/draft-schinazi-masque-9297bis",
+  "labels": [
+    {
+      "name": "bug",
+      "description": "Something isn't working",
+      "color": "d73a4a"
+    },
+    {
+      "name": "documentation",
+      "description": "Improvements or additions to documentation",
+      "color": "0075ca"
+    },
+    {
+      "name": "duplicate",
+      "description": "This issue or pull request already exists",
+      "color": "cfd3d7"
+    },
+    {
+      "name": "enhancement",
+      "description": "New feature or request",
+      "color": "a2eeef"
+    },
+    {
+      "name": "help wanted",
+      "description": "Extra attention is needed",
+      "color": "008672"
+    },
+    {
+      "name": "good first issue",
+      "description": "Good for newcomers",
+      "color": "7057ff"
+    },
+    {
+      "name": "invalid",
+      "description": "This doesn't seem right",
+      "color": "e4e669"
+    },
+    {
+      "name": "question",
+      "description": "Further information is requested",
+      "color": "d876e3"
+    },
+    {
+      "name": "wontfix",
+      "description": "This will not be worked on",
+      "color": "ffffff"
+    }
+  ],
+  "issues": [
+    {
+      "number": 1,
+      "id": "I_kwDOPJ31ac6_w37X",
+      "title": "Better errors",
+      "url": "https://github.com/DavidSchinazi/draft-schinazi-masque-9297bis/issues/1",
+      "state": "OPEN",
+      "author": "DavidSchinazi",
+      "authorAssociation": "OWNER",
+      "assignees": [],
+      "labels": [],
+      "body": "RFC 9297 only defines H3_DATAGRAM_ERROR, and recommends it even for capsule protocol issues. We should define a new error specific to capsules",
+      "createdAt": "2025-07-09T22:00:06Z",
+      "updatedAt": "2025-07-09T22:00:06Z",
+      "closedAt": null,
+      "comments": []
+    },
+    {
+      "number": 2,
+      "id": "I_kwDOPJ31ac6_w5_b",
+      "title": "Add mechanism to indicate max datagram size",
+      "url": "https://github.com/DavidSchinazi/draft-schinazi-masque-9297bis/issues/2",
+      "state": "OPEN",
+      "author": "DavidSchinazi",
+      "authorAssociation": "OWNER",
+      "assignees": [],
+      "labels": [],
+      "body": "This was initially filed as https://github.com/ietf-wg-webtrans/draft-ietf-webtrans-http2/issues/124.\n\nWhen HTTP Datagrams are sent in QUIC DATAGRAM frames, their length is limited to the path MTU. However, when sent using the DATAGRAM capsule (which can be used in HTTP/1,2, and 3) their length can theoretically reach almost 2^62. Implementations therefore need to have a maximum datagram capsule length that they'll accept, to avoid buffering unbounded amounts of memory.\n\nRFC 9297 states:\n\n> While DATAGRAM Capsules can theoretically carry a payload of length 2^62-1, most HTTP extensions that use HTTP Datagrams will have their own limits on what datagram payload sizes are practical. Implementations SHOULD take those limits into account when parsing DATAGRAM Capsules. If an incoming DATAGRAM Capsule has a length that is known to be so large as to not be usable, the implementation SHOULD discard the Capsule without buffering its contents into memory.\n\nWe should probably have a mechanism that allows an endpoint to communicate its limit to its peer. This can be accomplished using a new capsule type.",
+      "createdAt": "2025-07-09T22:04:18Z",
+      "updatedAt": "2025-07-09T22:04:18Z",
+      "closedAt": null,
+      "comments": []
+    },
+    {
+      "number": 3,
+      "id": "I_kwDOPJ31ac6_w7Nk",
+      "title": "Capsules too long for the underlying stream",
+      "url": "https://github.com/DavidSchinazi/draft-schinazi-masque-9297bis/issues/3",
+      "state": "OPEN",
+      "author": "DavidSchinazi",
+      "authorAssociation": "OWNER",
+      "assignees": [],
+      "labels": [],
+      "body": "This was initially filed as https://github.com/ietf-wg-webtrans/draft-ietf-webtrans-http2/issues/126.\n\nIt's technically possible to send a capsule length that would exceed the max length of the stream. For example, a capsule length of 2^62-1 would never fit because the sum of type, length, and value would be more than 2^62 bytes.\n\nWe should describe this edge case and clarify that it's illegal to send this, and the receiver should abort the stream if it detects it.",
+      "createdAt": "2025-07-09T22:06:55Z",
+      "updatedAt": "2025-07-09T22:06:55Z",
+      "closedAt": null,
+      "comments": []
+    },
+    {
+      "number": 4,
+      "id": "I_kwDOPJ31ac6_xBmn",
+      "title": "Capsule until end of stream?",
+      "url": "https://github.com/DavidSchinazi/draft-schinazi-masque-9297bis/issues/4",
+      "state": "OPEN",
+      "author": "DavidSchinazi",
+      "authorAssociation": "OWNER",
+      "assignees": [],
+      "labels": [],
+      "body": "Should we add a way to have a capsule that extends until the ends of the stream?\n\nThis would be useful for example to allow sending a DATA capsule in draft-ietf-httpbis-connect-tcp without knowing upfront how long the data will be.\n\nThis can be accomplished by saying that a capsule length of 2^62-1 means that it extends to the end of the stream. That length is currently invalid, see #3.",
+      "createdAt": "2025-07-09T22:23:52Z",
+      "updatedAt": "2025-07-09T22:23:52Z",
+      "closedAt": null,
+      "comments": []
+    },
+    {
+      "number": 5,
+      "id": "I_kwDOPJ31ac6_xB1e",
+      "title": "Capsule protocol version negotiation",
+      "url": "https://github.com/DavidSchinazi/draft-schinazi-masque-9297bis/issues/5",
+      "state": "OPEN",
+      "author": "DavidSchinazi",
+      "authorAssociation": "OWNER",
+      "assignees": [],
+      "labels": [],
+      "body": "If we decide to add new features like #4, we'll want to indicate support. This could be done by sending `Capsule-Protocol: ?1, v=2`",
+      "createdAt": "2025-07-09T22:24:36Z",
+      "updatedAt": "2025-07-09T22:24:36Z",
+      "closedAt": null,
+      "comments": []
+    },
+    {
+      "number": 6,
+      "id": "I_kwDOPJ31ac6_xCYM",
+      "title": "Revisit optionality of the Capsule-Protocol HTTP header",
+      "url": "https://github.com/DavidSchinazi/draft-schinazi-masque-9297bis/issues/6",
+      "state": "OPEN",
+      "author": "DavidSchinazi",
+      "authorAssociation": "OWNER",
+      "assignees": [],
+      "labels": [],
+      "body": "RFC 9297 makes this header optional. It's prevented some optimizations where intermediaries can operate on the capsule stream without understanding the `:protocol` in use. We could revisit that and make the header mandatory. That might also be necessary for version negotiation - see #5.",
+      "createdAt": "2025-07-09T22:26:15Z",
+      "updatedAt": "2025-07-09T22:26:15Z",
+      "closedAt": null,
+      "comments": []
+    }
+  ],
+  "pulls": []
+}
